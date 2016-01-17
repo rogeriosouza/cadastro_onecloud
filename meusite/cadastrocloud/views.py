@@ -4,11 +4,12 @@ from cadastrocloud.models import cadastro
 from cadastrocloud.serializers import CadastroCloudSerializer
 from rest_framework import mixins
 from rest_framework import generics
+from django.views.generic import TemplateView
 
 # Create your views here.
+    
 def post_list(request):
-    return render(request, 'cadastrocloud/post_list.html', {})
-
+        return render(request, 'cadastrocloud/post_list.html', {})
 class CadastroList(mixins.ListModelMixin,
                   mixins.CreateModelMixin,
                   generics.GenericAPIView):
@@ -21,6 +22,7 @@ class CadastroList(mixins.ListModelMixin,
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
  
+    
 class CadastroDetail(mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,
                     mixins.DestroyModelMixin,
@@ -37,6 +39,9 @@ class CadastroDetail(mixins.RetrieveModelMixin,
  
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+
+class CadastroView(TemplateView):
+   	template_name = "cadastro.html"
 
     
 
