@@ -41,7 +41,7 @@ class CadastroDetail(mixins.RetrieveModelMixin,
         return self.destroy(request, *args, **kwargs)
 
 class CadastroView(TemplateView):
-   	template_name = "cadastro.html"
+   	template_name = "post_list.html"
 
     
 

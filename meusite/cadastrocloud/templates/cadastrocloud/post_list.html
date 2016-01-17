@@ -1,0 +1,41 @@
+!doctype html>
+<html ng-app="cadastrocloudApp">
+    <head>
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure-min.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/common.css">
+        <script>
+        globals = {
+            comentariosUrl: '{% url "comentarios" %}'
+        }
+        </script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js" charset="utf-8"></script>
+        <script src="{{ STATIC_URL }}js/core.js"></script>
+    </head>
+    <body>
+        <div ng-controller="comentariosCtrl">
+            <label>Name:</label>
+            <input type="text" ng-model="yourName" placeholder="Seu nome aqui"> <span>Hello {$yourName$}!</span><br><br>
+            <hr>
+            <div ng-repeat="c in data.comentarios track by c.id">
+                <h2>{$c.titulo$}</h2>
+                <p>{$c.comentario$}</p>
+                <a href="#" ng-click="removerComentario(c)">remover</a>
+                <hr>
+            </div>
+            <div class="pure-alert pure-alert-success" ng-show="data.success">
+                <b>Atualizado!</b>
+                <br><br>
+            </div>
+            <br>
+            <form class="pure-form pure-form-aligned" ng-submit="updateComentarios()">
+                <label>Titulo:</label>
+                <input type="text" name="titulo" ng-model="data.titulo" placeholder="Digite o título do comentário">
+                <br><br>
+                <label>Comentario:</label>
+                <textarea name="comentario" ng-model="data.comentario" placeholder="Digite seu comentario"></textarea>
+                <input type="submit" value="Adicionar comentário">
+            </form>
+            <hr>
+        </div>
+    </body>
+</html>
