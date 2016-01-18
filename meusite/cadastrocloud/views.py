@@ -10,6 +10,7 @@ from django.views.generic import TemplateView
     
 def post_list(request):
         return render(request, 'cadastrocloud/post_list.html', {})
+        
 class CadastroList(mixins.ListModelMixin,
                   mixins.CreateModelMixin,
                   generics.GenericAPIView):
